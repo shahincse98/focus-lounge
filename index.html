@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Lounge | অ্যাম্বিয়েন্ট সাউন্ড ও পোমোডোরো স্টুডিও</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">Focus Lounge</h1>
+          <p class="brand-subtitle">অ্যাম্বিয়েন্ট সাউন্ড ও পোমোডোরো স্টুডিও</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="zen-btn" class="glass-btn icon-btn" title="জেন মোড (Zen Mode)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+          </svg>
+          <span class="btn-text">জেন মোড</span>
+        </button>
+        <button id="master-mute-btn" class="glass-btn icon-btn" title="সকল সাউন্ড মিউট/চালু করুন">
+          <svg id="mute-icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <svg id="mute-icon-off" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <span class="btn-text" id="mute-btn-text">সাউন্ড অন</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Grid -->
+    <main class="main-grid">
+      <!-- Left Column: Timer & Goal -->
+      <section class="timer-section glass-card">
+        <!-- Modes Switcher -->
+        <div class="mode-tabs">
+          <button class="mode-tab active" data-mode="focus">🎯 ফোকাস (২৫ মি)</button>
+          <button class="mode-tab" data-mode="shortBreak">☕ ছোট বিরতি (৫ মি)</button>
+          <button class="mode-tab" data-mode="longBreak">🌴 বড় বিরতি (১৫ মি)</button>
+        </div>
+
+        <!-- Circular Timer Ring -->
+        <div class="timer-display-wrapper">
+          <svg class="progress-ring" viewBox="0 0 320 320">
+            <circle class="progress-ring-track" cx="160" cy="160" r="140"></circle>
+            <circle class="progress-ring-indicator" id="progress-indicator" cx="160" cy="160" r="140"></circle>
+          </svg>
+
+          <div class="timer-center-content">
+            <div class="timer-digits" id="timer-digits">25:00</div>
+            <div class="timer-status" id="timer-status">কাজে মনোনিবেশ করুন</div>
+            <div class="session-counter" id="session-counter">
+              <span class="session-badge">আজকের সম্পন্ন সেশন: <strong id="completed-sessions-count">০</strong> টি</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timer Controls -->
+        <div class="timer-controls">
+          <button id="start-pause-btn" class="primary-btn pulse-glow">
+            <svg id="play-icon" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <svg id="pause-icon" class="hidden" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="4" width="4" height="16"></rect>
+              <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+            <span id="start-btn-label">শুরু করুন</span>
+          </button>
+
+          <button id="reset-btn" class="glass-btn" title="রিসেট">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+            </svg>
+            <span>রিসেট</span>
+          </button>
+
+          <button id="skip-btn" class="glass-btn" title="পরবর্তী সেশন">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 4 15 12 5 20 5 4"></polygon>
+              <line x1="19" y1="5" x2="19" y2="19"></line>
+            </svg>
+            <span>স্কিপ</span>
+          </button>
+        </div>
+
+        <!-- Current Focus Task -->
+        <div class="current-task-box">
+          <div class="task-input-wrapper">
+            <span class="task-bullet">📌</span>
+            <input type="text" id="current-task-input" placeholder="বর্তমান লক্ষ্য লিখুন (যেমন: কোডিং বা পড়া)..." autocomplete="off">
+            <button id="task-done-toggle" class="task-status-btn" title="সম্পন্ন চিহ্নিত করুন">
+              ✓ সম্পন্ন
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Ambient Sound Mixer -->
+      <section class="mixer-section glass-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">🎚️ অ্যাম্বিয়েন্ট সাউন্ড মিক্সার</h2>
+            <p class="section-desc">আপনার পছন্দের শব্দগুলো একসাথে মিক্স করে ফোকাস বাড়ান</p>
+          </div>
+          <button id="quick-preset-btn" class="glass-btn small-btn">
+            ✨ ক্যাফে বৃষ্টি
+          </button>
+        </div>
+
+        <div class="sound-grid" id="sound-grid">
+          <!-- Rain Sound -->
+          <div class="sound-card" data-sound="rain">
+            <div class="sound-header">
+              <div class="sound-icon-box rain-icon">
+                🌧️
+              </div>
+              <div class="sound-info">
+                <span class="sound-name">ঝুম বৃষ্টি</span>
+                <span class="sound-status">বন্ধ</span>
+              </div>
+              <button class="sound-toggle-btn" aria-label="Toggle Rain"></button>
+            </div>
+            <div class="volume-slider-wrapper">
+              <span class="vol-icon">🔈</span>
+              <input type="range" class="volume-slider" min="0" max="100" value="0">
+              <span class="vol-percentage">০%</span>
+            </div>
+          </div>
+
+          <!-- Fireplace Sound -->
+          <div class="sound-card" data-sound="fire">
+            <div class="sound-header">
+              <div class="sound-icon-box fire-icon">
+                🔥
+              </div>
+              <div class="sound-info">
+                <span class="sound-name">অগ্নিকুণ্ড</span>
+                <span class="sound-status">বন্ধ</span>
+              </div>
+              <button class="sound-toggle-btn" aria-label="Toggle Fire"></button>
+            </div>
+            <div class="volume-slider-wrapper">
+              <span class="vol-icon">🔈</span>
+              <input type="range" class="volume-slider" min="0" max="100" value="0">
+              <span class="vol-percentage">০%</span>
+            </div>
+          </div>
+
+          <!-- Wind Sound -->
+          <div class="sound-card" data-sound="wind">
+            <div class="sound-header">
+              <div class="sound-icon-box wind-icon">
+                🍃
+              </div>
+              <div class="sound-info">
+                <span class="sound-name">শান্ত বাতাস</span>
+                <span class="sound-status">বন্ধ</span>
+              </div>
+              <button class="sound-toggle-btn" aria-label="Toggle Wind"></button>
+            </div>
+            <div class="volume-slider-wrapper">
+              <span class="vol-icon">🔈</span>
+              <input type="range" class="volume-slider" min="0" max="100" value="0">
+              <span class="vol-percentage">০%</span>
+            </div>
+          </div>
+
+          <!-- Waves Sound -->
+          <div class="sound-card" data-sound="waves">
+            <div class="sound-header">
+              <div class="sound-icon-box waves-icon">
+                🌊
+              </div>
+              <div class="sound-info">
+                <span class="sound-name">সাগরের ঢেউ</span>
+                <span class="sound-status">বন্ধ</span>
+              </div>
+              <button class="sound-toggle-btn" aria-label="Toggle Waves"></button>
+            </div>
+            <div class="volume-slider-wrapper">
+              <span class="vol-icon">🔈</span>
+              <input type="range" class="volume-slider" min="0" max="100" value="0">
+              <span class="vol-percentage">০%</span>
+            </div>
+          </div>
+
+          <!-- Brown Noise -->
+          <div class="sound-card" data-sound="brown">
+            <div class="sound-header">
+              <div class="sound-icon-box brown-icon">
+                📻
+              </div>
+              <div class="sound-info">
+                <span class="sound-name">ডিপ ব্রাউন নয়েজ</span>
+                <span class="sound-status">বন্ধ</span>
+              </div>
+              <button class="sound-toggle-btn" aria-label="Toggle Brown Noise"></button>
+            </div>
+            <div class="volume-slider-wrapper">
+              <span class="vol-icon">🔈</span>
+              <input type="range" class="volume-slider" min="0" max="100" value="0">
+              <span class="vol-percentage">০%</span>
+            </div>
+          </div>
+
+          <!-- Binaural / Zen Drone -->
+          <div class="sound-card" data-sound="zen">
+            <div class="sound-header">
+              <div class="sound-icon-box zen-icon">
+                🧘
+              </div>
+              <div class="sound-info">
+                <span class="sound-name">ধ্যান ড্রোন (৪৩২Hz)</span>
+                <span class="sound-status">বন্ধ</span>
+              </div>
+              <button class="sound-toggle-btn" aria-label="Toggle Zen"></button>
+            </div>
+            <div class="volume-slider-wrapper">
+              <span class="vol-icon">🔈</span>
+              <input type="range" class="volume-slider" min="0" max="100" value="0">
+              <span class="vol-percentage">০%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Presets Bar -->
+        <div class="presets-bar">
+          <span class="presets-title">প্রিসেট:</span>
+          <button class="preset-pill" data-preset="rainy-cafe">🌧️ বর্ষার রাত</button>
+          <button class="preset-pill" data-preset="cozy-fireplace">🔥 আরামদায়ক শীত</button>
+          <button class="preset-pill" data-preset="deep-focus">⚡ ডিপ ফোকাস</button>
+          <button class="preset-pill" data-preset="reset-sounds">⏹️ সব সাউন্ড বন্ধ</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>💡 কোনো ইন্টারনেট অডিও লোডিং ছাড়াই Web Audio সিন্থেসাইজারে পরিচালিত • ব্রাউজার বন্ধ করলেও আপনার হিস্ট্রি সংরক্ষিত থাকে</p>
+    </footer>
+  </div>
+
+  <!-- Audio Alert Notification Bell (Synth generated) -->
+  <script src="audio-engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
